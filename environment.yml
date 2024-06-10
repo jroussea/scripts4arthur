@@ -1,0 +1,11 @@
+name: scripts4arthur
+channels:
+  - defaults
+  - bioconda
+  - conda-forgez
+dependencies:
+  - diamond=2.1.7=h43eeafb_1
+  - pandas=2.2.2=py311h14de704_1
+  - numpy=1.26.4=py311h64a7726_0
+  - pip=24.0=pyhd8ed1ab_0
+  - python=3.11.9=hb806964_0_cpython
