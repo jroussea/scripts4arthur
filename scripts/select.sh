@@ -1,3 +1,11 @@
-cut -f 1,3,4 all_annotation.tsv | grep "Gene3D" > file_select.tsv
+#!/usr/bin/env bash
+
+protein=${1}
+colA=${2}
+colB=${3}
+database=${4}
+
+cut -f $protein,$colA,$colB all_annotation.tsv | grep $database > file_select.tsv
+
 
 
