@@ -56,8 +56,8 @@ if __name__ == '__main__':
 
 
 
-#diamond_alignment = "diamond_alignment"
-#query = 1
+diamond_alignment = "all_annotation.tsv"
+query = 1
 #subject = 2
 #identity = 3 
 #overlap = 4
@@ -66,3 +66,23 @@ if __name__ == '__main__':
 #identity_min = 80
 #overlap_min = 80
 #evalue_max = 1e-5
+
+
+df_annotation = pd.read_table(diamond_alignment, header=None)
+df_diamond_alignment.columns = \
+    [ i for i in range(1, len(df_diamond_alignment.columns)+1, 1) ]
+
+index = df_diamond_alignment[(df_diamond_alignment[query] == \
+                              df_diamond_alignment[subject])].index
+
+df_diamond_alignment.drop(index, inplace = True)
+
+
+
+df_diamond_alignment = df_diamond_alignment[(df_diamond_alignment[identity] >= identity_min) & \
+                           (df_diamond_alignment[overlap] >= overlap_min) & \
+                               (df_diamond_alignment[evalue] <= evalue_max)]
+
+
+df_diamond_alignment.to_csv(f"diamond_ssn_{identity_min}_{overlap_min}_{evalue_max}.tsv", 
+                            sep = "\t", index = False, header = False) 
