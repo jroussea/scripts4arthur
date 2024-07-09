@@ -114,12 +114,14 @@ conserver uniquement la partie conservé par diamond blastp afin de pouvoir effe
 ```bash
 ./scripts/sequence_list.sh results/all.fasta results/sequence_list.txt 
 ```
- 
-- deuxième étape, concaténer toutes les tables d'annotations en 1 seul.
- 
+
+- troisième étape, concaténer toutes les tables d'annotations en 1 seul.
+
 Dans cette exemple noius avons créer une table pour la banque de données Pfam et une table pour la banque de données CATH/Gene3D
- 
+
 vous trouverez les tables utilisé danscette partie dans le dossier `annotations/pfam`et dans annotations/gene3d`
+
+ajoute également un identifiant pour chaque séquence
  
 ```bash
 # Pfam
@@ -129,15 +131,6 @@ vous trouverez les tables utilisé danscette partie dans le dossier `annotations
 ./scripts/merge.R annotations/gene3d/gene3d_annotation.tsv results/sequence_list.txt gene3d results/
 ```
 
-- troisième étape attribuer un identifiant
-
-attribuer un identifiant nuérique à chaque séquence
-
-```bash
-
-
-```
- 
 - quatrième étape, même étape que l'étape 2 mais avec uniquement les séquences qui ont passé le filtre
  
 nécessite une étape supplémentaire afin de récupéré les noms des séquences
