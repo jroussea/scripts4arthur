@@ -4,3 +4,11 @@ save/
 test/
 annotations/
 fasta/
+save2/
+.Rhistory
+distribution/
+cluster.py
+benchmarks/
+index/
+logs/
+.snakemake

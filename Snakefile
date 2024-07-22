@@ -31,8 +31,8 @@ DBT = f"results/{config['diamond_blastp']}"
 AN_F = get_files(config["annotation"])
 ATBT = config["attributes"]
 COL = config["columns"]
-NET_F = config["network_file"]
-NGB = config["neighbours"]
+#NET_F = config["network_file"]
+#NGB = config["neighbours"]
 PCOV = config["filtration"]["overlap"]
 if not PCOV:
     PCOV = [80]
@@ -42,7 +42,7 @@ if not PIDENT:
 EVAL = config["filtration"]["evalue"]
 if not EVAL:
     EVAL = ["1e-50"]
-ISOL = config["isolated"]
+#ISOL = config["isolated"]
 IDX = f"index/{config['indices']}"
 DIS = config["distribution"]
 
@@ -71,28 +71,28 @@ if not config["attributes"]:
 else:
     ATTRIB = config["attributes"]
 
-VER_ATTRIB = expand("results/diamond_ssn_{overlap}_{identity}_{eval}_with_attributes.vertices",
-                overlap=PCOV,
-                identity=PIDENT,
-                eval=EVAL)
+#VER_ATTRIB = expand("results/diamond_ssn_{overlap}_{identity}_{eval}_with_attributes.vertices",
+#                overlap=PCOV,
+#                identity=PIDENT,
+#                eval=EVAL)
 
-COL_RESLTS = expand("results/{overlap}_{identity}_{eval}_ssn_{col}_results",
-                overlap=PCOV,
-                identity=PIDENT,
-                eval=EVAL,
-                col=COL)
+#COL_RESLTS = expand("results/{overlap}_{identity}_{eval}_ssn_{col}_results",
+#                overlap=PCOV,
+#                identity=PIDENT,
+#                eval=EVAL,
+#                col=COL)
 
-HOM_SCORE = expand("results/{overlap}_{identity}_{eval}_{col}_homogeneity_score",
-                overlap=PCOV,
-                identity=PIDENT,
-                eval=EVAL,
-                col=COL)
+#HOM_SCORE = expand("results/{overlap}_{identity}_{eval}_{col}_homogeneity_score",
+#                overlap=PCOV,
+#                identity=PIDENT,
+#                eval=EVAL,
+#                col=COL)
 
-ABUND_MAT = expand("results/{overlap}_{identity}_{eval}_{col}_abundance_matrix",
-                overlap=PCOV,
-                identity=PIDENT,
-                eval=EVAL,
-                col=COL)
+#ABUND_MAT = expand("results/{overlap}_{identity}_{eval}_{col}_abundance_matrix",
+#                overlap=PCOV,
+#                identity=PIDENT,
+#                eval=EVAL,
+#                col=COL)
 
 
 # ================================================================================================ #
@@ -110,8 +110,8 @@ rule all:
         EDGES,
         VERTI,
         ATTRIB,
-        VER_ATTRIB,
-        COL_RESLTS
+        #VER_ATTRIB,
+        #COL_RESLTS
 
 
 if FASTA:
@@ -263,45 +263,45 @@ rule attributes:
             "modules/attributes.py"
 
 
-if not config["attributes"]:
+#if not config["attributes"]:
     # ADDS ATTRIBUTES TO THE VERTEX FILE
-    rule vertices:
-        input:
-            attrib=ATTRIB,
-            vertices=VERTI,
-            indices=IDX
-        output:
-            VER_ATTRIB
-        log:
-            "logs/add_attributes.log"
-        benchmark:
-            "benchmarks/add_attributes.bench"
-        params:
-            columns=COL
-        script:
-            "modules/add.py"
+#    rule vertices:
+#        input:
+#            attrib=ATTRIB,
+#            vertices=VERTI,
+#            indices=IDX
+#        output:
+#            VER_ATTRIB
+#        log:
+#            "logs/add_attributes.log"
+#        benchmark:
+#            "benchmarks/add_attributes.bench"
+#        params:
+#            columns=COL
+#        script:
+#            "modules/add.py"
 
 # CREATES A SEQUENCE SIMILARITY NETWORK AND EXTRACT RESULTS
-rule network:
-    input:
-        edges=EDGES,
-        vertices=VER_ATTRIB
-    output:
-        rslts = COL_RESLTS,
-        homscore = HOM_SCORE,
-        abund_mat = ABUND_MAT
-    log:
-        "logs/network.log"
-    benchmark:
-        "benchmarks/network.bench"
-    params:
-        neighbours=NGB,
-        columns=COL,
-        isolated=ISOL,
-        similarity=NET_F,
-        overlap=PCOV,
-        identity=PIDENT,
-        eval=EVAL,
-        indices=IDX
-    script:
-        "modules/network.py"
+#rule network:
+#    input:
+#        edges=EDGES,
+#        vertices=VER_ATTRIB
+#    output:
+#        rslts = COL_RESLTS,
+#        homscore = HOM_SCORE,
+#        abund_mat = ABUND_MAT
+#    log:
+#        "logs/network.log"
+#    benchmark:
+#        "benchmarks/network.bench"
+#    params:
+#        neighbours=NGB,
+#        columns=COL,
+#        isolated=ISOL,
+#        similarity=NET_F,
+#        overlap=PCOV,
+#        identity=PIDENT,
+#        eval=EVAL,
+#        indices=IDX
+#    script:
+#        "modules/network.py"

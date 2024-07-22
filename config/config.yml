@@ -74,6 +74,7 @@ annotation: an_files_test/*
 
 columns:
   - peptides
+  - identifiant
   - trophic_mode
   - Phylum_Metdb
 
@@ -95,11 +96,11 @@ conversion: true
 
 # If you want to extract information of a preformed network saved in a file,
 # type the path of the file containing the graph, else, leave blank
-network_file:
+#network_file:
 
 # The number of minimum neighbours you want in your connected components of the sequence similarity
 # network
-neighbours: 3
+#neighbours: 3
 
 # If you want to REMOVE ISOLATED nodes, insert "yes", else leave blank.
-isolated: yes
+#isolated: yes
